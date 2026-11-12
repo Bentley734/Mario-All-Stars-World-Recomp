@@ -1,0 +1,66 @@
+{
+  "$schema": "https://recomplauncher.com/schema/recomplauncher.json",
+  "format": 1,
+  "name": "Mario All-Stars + World Recomp",
+  "repo": "Bentley734/Mario-All-Stars-World-Recomp",
+  "game": {
+    "kind": "iso",
+    "label": "Your Super Mario All-Stars + Super Mario World (USA) SNES combination cartridge dump (.sfc or .smc). Extract it first if it is zipped.",
+    "dumps": [{ "name": "USA combination cartridge, headerless", "size": 2621440, "crc32": "f84305b1" }]
+  },
+  "start": {
+    "program": ["MarioAllStarsWorldRecomp.exe", "Mario All-Stars + World.app/Contents/MacOS/MarioAllStarsWorldRecomp"],
+    "args": ["--no-launcher", "--rom", "{game}"]
+  },
+  "prepare": {
+    "program": ["MarioAllStarsWorldRecomp.exe", "Mario All-Stars + World.app/Contents/MacOS/MarioAllStarsWorldRecomp"],
+    "args": ["--prepare-rom", "{game}"],
+    "label": "Verify the USA Mario combination cartridge",
+    "timeout": 30
+  },
+  "config": [{
+    "format": "ini",
+    "file": [
+      { "path": "{install}/config.ini", "if": "{install}/MarioAllStarsWorldRecomp.exe" },
+      { "path": "{home}/Library/Application Support/Mario All-Stars + World/config.ini" }
+    ]
+  }],
+  "settings": [
+    {
+      "id": "fullscreen", "label": "Window mode", "group": "Display",
+      "choices": [
+        { "label": "Windowed", "set": { "Graphics/Fullscreen": "0" } },
+        { "label": "Fullscreen", "set": { "Graphics/Fullscreen": "1" } }
+      ],
+      "defaults": { "Graphics/Fullscreen": "0" }
+    },
+    {
+      "id": "audio", "label": "Game audio", "group": "Sound",
+      "choices": [
+        { "label": "Off", "set": { "Sound/EnableAudio": "0" } },
+        { "label": "On", "set": { "Sound/EnableAudio": "1" } }
+      ],
+      "defaults": { "Sound/EnableAudio": "1" }
+    },
+    {
+      "id": "volume", "label": "Volume", "group": "Sound",
+      "slider": { "key": "Sound/Volume", "min": 0, "max": 100, "step": 5, "format": "%d" },
+      "defaults": { "Sound/Volume": "100" }
+    }
+  ],
+  "folders": {
+    "data": [
+      { "path": "{install}", "if": "{install}/MarioAllStarsWorldRecomp.exe" },
+      { "path": "{home}/Library/Application Support/Mario All-Stars + World" }
+    ]
+  },
+  "saves": [
+    "{install}/saves", "{install}/config.ini", "{install}/mario-controller.ini",
+    "{home}/Library/Application Support/Mario All-Stars + World/saves",
+    "{home}/Library/Application Support/Mario All-Stars + World/config.ini",
+    "{home}/Library/Application Support/Mario All-Stars + World/mario-controller.ini"
+  ],
+  "actions": [{ "id": "data", "label": "Open game data", "open": "data" }],
+  "exit_codes": { "65": "Choose a verified Super Mario All-Stars + Super Mario World (USA) SNES cartridge dump." },
+  "looks": { "lines": 224 }
+}
