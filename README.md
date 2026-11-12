@@ -72,3 +72,5 @@ flying blocks. Normal activation timing still controls movement and
 collisions. Unsupported scenes use the original view. The source ZIP includes widescreen notes in `docs/WIDESCREEN.md`.
 
 The source archive excludes the cartridge and all generated game code.
+
+[![Verified developer on RecompStore](https://recompstore.com/assets/press/verified-dark.svg)](https://recompstore.com/dev/bentley734)
