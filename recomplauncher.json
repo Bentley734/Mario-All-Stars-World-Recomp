@@ -21,9 +21,14 @@
   "config": [{
     "format": "ini",
     "file": [
+      { "path": "{install}/config.ini", "if": "{install}/portable.txt" },
       { "path": "{install}/config.ini", "if": "{install}/MarioAllStarsWorldRecomp.exe" },
       { "path": "{home}/Library/Application Support/Mario All-Stars + World/config.ini" }
-    ]
+    ],
+    "ensure": {
+      "Graphics/WindowScale": "3", "Graphics/NewRenderer": "1",
+      "Graphics/NoSpriteLimits": "1", "Sound/AudioFreq": "32000"
+    }
   }],
   "settings": [
     {
@@ -50,6 +55,7 @@
   ],
   "folders": {
     "data": [
+      { "path": "{install}", "if": "{install}/portable.txt" },
       { "path": "{install}", "if": "{install}/MarioAllStarsWorldRecomp.exe" },
       { "path": "{home}/Library/Application Support/Mario All-Stars + World" }
     ]

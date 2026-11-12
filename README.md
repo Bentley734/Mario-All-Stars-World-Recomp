@@ -12,6 +12,8 @@ translated routines alongside cycle-sensitive SNES code and hardware.
 
 ## Generate and build
 
+Download the source ZIP from the [latest GitHub release](https://github.com/Bentley734/Mario-All-Stars-World-Recomp/releases/latest) before following these steps.
+
 1. Obtain the [SNESRecomp v0.4.4-alpha source](https://github.com/mstan/snesrecomp/tree/v0.4.4-alpha).
 2. With Python and Cargo available, run `bash tools/generate.sh /path/to/snesrecomp /path/to/combo.sfc`.
 3. Configure with `cmake -S . -B build -DSNESRECOMP_ROOT=/path/to/snesrecomp -DCMAKE_BUILD_TYPE=Release`.
@@ -25,6 +27,8 @@ arm64, with deployment targets macOS 13 and iOS 16. For iOS, configure with
 Package the desktop builds with `bash tools/package-desktop.sh /path/to/windows-build /path/to/macos-build /path/to/snesrecomp /path/to/sdl /path/to/output`.
 Each versioned ZIP includes `recomplauncher.json` at its root. Windows stores
 settings and saves alongside the program. macOS uses `~/Library/Application Support/Mario All-Stars + World`.
+On macOS, an empty `portable.txt` beside the app keeps those files with the app
+when the install folder is writable.
 
 PS5 needs a Prospero toolchain and a release build of the PS5 SDL2 port. Configure with
 its CMake toolchain file and `-DPS5_SDL2_BUILD_DIR=/path/to/sdl2-build`. It produces
@@ -65,7 +69,6 @@ plains stages and ordinary horizontal Super Mario World stages use a 682×224
 logical field with the original pixel proportions. SMB3 World 1-1 shows
 Goombas ahead of the camera. Yoshi's Island 1 shows Banzai Bills, Rexes and
 flying blocks. Normal activation timing still controls movement and
-collisions. Unsupported scenes use the original view. The
-[widescreen notes](docs/WIDESCREEN.md) describe the remaining per-game work.
+collisions. Unsupported scenes use the original view. The source ZIP includes widescreen notes in `docs/WIDESCREEN.md`.
 
 The source archive excludes the cartridge and all generated game code.
